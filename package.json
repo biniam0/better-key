@@ -1,0 +1,55 @@
+{
+  "name": "better-key",
+  "version": "1.0.0",
+  "description": "High availability key manager for multi-key deployments in Node.js environments.",
+  "keywords": [
+    "api",
+    "api-key",
+    "key-rotation",
+    "high-availability",
+    "load-balancing",
+    "typescript",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/your-username/better-key",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/better-key.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/better-key/issues"
+  },
+  "license": "MIT",
+  "author": "Your Name",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "dev": "tsup src/index.ts --watch --format esm,cjs --dts",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
