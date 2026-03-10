@@ -1,5 +1,5 @@
 {
-  "name": "better-key",
+  "name": "betterkeys",
   "version": "1.0.0",
   "description": "High availability key manager for multi-key deployments in Node.js environments.",
   "keywords": [
@@ -11,16 +11,16 @@
     "typescript",
     "nodejs"
   ],
-  "homepage": "https://github.com/your-username/better-key",
+  "homepage": "https://github.com/biniam0/better-key",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/better-key.git"
+    "url": "https://github.com/biniam0/better-key.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/better-key/issues"
+    "url": "https://github.com/biniam0/better-key/issues"
   },
   "license": "MIT",
-  "author": "Your Name",
+  "author": "biniam0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
