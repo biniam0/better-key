@@ -13,8 +13,8 @@ export class KeyPool {
     }));
   }
 
-  getAll() {
-    return this.keys.find((k) => k.healthy);
+  getAll(): KeyStats[] {
+    return this.keys.filter((k) => k.healthy);
   }
 
   markUsed(key: string) {

@@ -1,12 +1,13 @@
 import { BetterKeyOptions, KeyStats, StrategyType } from "./types";
 import { KeyPool } from "./KeyPool";
-import { roundRobin } from "../strategies/roundRobin";
+import { createRoundRobin } from "../strategies/roundRobin";
 import { leastUsed } from "../strategies/leastUsed";
 import { randomStrategy } from "../strategies/random";
 
 export class KeyManager {
   private pool: KeyPool;
   private strategy: StrategyType;
+  private roundRobin: (keys: KeyStats[]) => string;
 
   constructor(options: BetterKeyOptions) {
     if (!options.keys || options.keys.length === 0) {
@@ -15,16 +16,11 @@ export class KeyManager {
 
     this.pool = new KeyPool(options.keys);
     this.strategy = options.strategy || "round-robin";
+    this.roundRobin = createRoundRobin();
   }
 
   getKey(): string {
-    const allStats = this.pool.getAll();
-
-    if (!allStats) {
-      throw new Error("No keys available");
-    }
-
-    const healthyKeys: KeyStats[] = [allStats].filter((stats) => stats.healthy);
+    const healthyKeys = this.pool.getAll();
 
     if (healthyKeys.length === 0) {
       throw new Error("No healthy keys available");
@@ -40,7 +36,7 @@ export class KeyManager {
         selectedKey = randomStrategy(healthyKeys);
         break;
       default:
-        selectedKey = roundRobin(healthyKeys);
+        selectedKey = this.roundRobin(healthyKeys);
     }
 
     this.pool.markUsed(selectedKey);
